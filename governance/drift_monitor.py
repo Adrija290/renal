@@ -1,15 +1,12 @@
+import os
 import numpy as np
 import pandas as pd
 from scipy.stats import entropy, ks_2samp
 from sklearn.metrics import roc_auc_score
-from database.db import db_session
-from database.models import PredictionLog
-from models.ensemble import EnsemblePredictor
 
 class DriftMonitor:
     def __init__(self, reference_data_path='models_cache/reference_distributions.npz'):
-        self.reference_dist = np.load(reference_data_path, allow_pickle=True) if exists(reference_data_path) else None
-        self.detector = EnsemblePredictor()  # Reuse existing model for scoring
+        self.reference_dist = np.load(reference_data_path, allow_pickle=True) if os.path.exists(reference_data_path) else None
     
     def detect_data_drift(self, new_data_df, features=['age', 'creatinine', 'gfr', 'hemoglobin']):
         """Kolmogorov-Smirnov test for feature distribution drift"""

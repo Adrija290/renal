@@ -6,9 +6,7 @@ from datetime import datetime
 # from database.db import Base, engine, db_session
 from database.models import *  # All models
 from models.ensemble import EnsemblePredictor
-from models.survival_model import SurvivalAnalyzer
-from models.gfr_forecaster import GFRForecaster
-from models.explainability import SHAPExplainer
+# from models.explainability import SHAPExplainer  # Disabled for Render
 from risk_monitoring.gfr_tracker import GFRTracker
 from risk_monitoring.anomaly_detector import AnomalyDetector
 from risk_monitoring.comorbidity_scorer import ComorbidityScorer
@@ -130,6 +128,8 @@ class MockAnalyzer:
         return {'avg_gfr': 52}
     def match_trials(self, data):
         return ['NCT04512345']
+    def explain(self, data):
+        return {'top_features': [], 'shap_values': {}}
     def detect_concept_drift(self, data):
         return {'alert': 'none'}
 
