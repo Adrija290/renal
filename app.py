@@ -7,10 +7,11 @@ app = Flask(__name__)
 app.config.from_object('config.Config')
 db.init_app(app)
 
-with app.app_context():
-    init_db(app)
-
 from ckd_engine import orchestrator
+
+@app.before_first_request
+def init():
+    init_db(app)
 
 @app.route('/')
 def home():
