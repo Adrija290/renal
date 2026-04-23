@@ -72,7 +72,9 @@ def _build_estimators():
     return estimators
 
 
-class CKDEnsemble:
+class EnsemblePredictor:
+    """Legacy name for Render compatibility"""
+
     def __init__(self):
         self.preprocessor = _build_preprocessor()
         self.ensemble = None
