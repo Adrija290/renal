@@ -3,7 +3,7 @@ import numpy as np
 import pandas as pd
 import json
 from datetime import datetime
-from database.db import Base, engine, db_session
+# from database.db import Base, engine, db_session
 from database.models import *  # All models
 from models.ensemble import EnsemblePredictor
 from models.survival_model import SurvivalAnalyzer
@@ -49,17 +49,8 @@ class CKDOrchestrator:
         self._initialize_demo_data()
 
     def _initialize_demo_data(self):
-        Base.metadata.create_all(engine)
-        # Add demo patients if none exist
-        if Patient.query.count() == 0:
-            demo_patients = [
-                {'id': 'PT001', 'name': 'John Doe', 'age': 62, 'gfr': 45, 'creatinine': 1.8, 'labs': json.dumps({'hemo': 10.2, 'bp': 150})},
-                {'id': 'PT002', 'name': 'Jane Smith', 'age': 55, 'gfr': 72, 'creatinine': 1.1, 'labs': json.dumps({'hemo': 13.5, 'bp': 130})},
-            ]
-            for p_data in demo_patients:
-                p = Patient(**p_data)
-                db_session.add(p)
-            db_session.commit()
+        pass  # DB init moved to Flask app context
+
 
     def predict_comprehensive(self, patient_data, user_id='demo_user'):
         # Core prediction
