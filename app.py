@@ -1,7 +1,16 @@
 from flask import Flask, render_template, request, jsonify
-from ckd_engine import orchestrator
+from flask_sqlalchemy import SQLAlchemy
+from database.db import db, init_db
+import os
 
 app = Flask(__name__)
+app.config.from_object('config.Config')
+db.init_app(app)
+
+with app.app_context():
+    init_db(app)
+
+from ckd_engine import orchestrator
 
 @app.route('/')
 def home():
