@@ -1,9 +1,224 @@
 {% extends "base.html" %}
+{% block title %}CKD Risk Assessment - NephroCare AI{% endblock %}
 {% block content %}
-<div class="container mt-5">
+<div class="container mt-5 mb-5">
     <div class="row justify-content-center">
         <div class="col-lg-10">
+
+            {% if result %}
+            <!-- Results panel -->
+            <div class="card shadow-lg border-0 mb-4 fade-in">
+                <div class="card-header bg-success text-white text-center py-3">
+                    <h4 class="mb-0"><i class="fas fa-chart-pie me-2"></i>Prediction Results</h4>
+                </div>
+                <div class="card-body">
+                    <div class="row text-center mb-4">
+                        <div class="col-md-4">
+                            <h6 class="text-muted">CKD Risk Score</h6>
+                            <h1 class="display-4 fw-bold {% if result.core.risk_score > 60 %}risk-high{% elif result.core.risk_score > 35 %}risk-medium{% else %}risk-low{% endif %}">
+                                {{ result.core.risk_score }}%
+                            </h1>
+                        </div>
+                        <div class="col-md-4">
+                            <h6 class="text-muted">Months to ESRD (est.)</h6>
+                            <h2 class="fw-bold text-primary">{{ result.forecast.median_months_to_esrd }}</h2>
+                        </div>
+                        <div class="col-md-4">
+                            <h6 class="text-muted">GFR Stage</h6>
+                            <h2 class="fw-bold text-warning">{{ result.risk_monitoring.gfr_trend.stage }}</h2>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-pills me-2 text-primary"></i>Recommended Treatments</h6>
+                            <ul class="list-group list-group-flush">
+                                {% for t in result.clinical_support.treatments %}
+                                <li class="list-group-item"><i class="fas fa-check-circle text-success me-2"></i>{{ t }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6><i class="fas fa-utensils me-2 text-warning"></i>Diet Plan</h6>
+                            <ul class="list-group list-group-flush">
+                                {% for d in result.patient.diet_plan %}
+                                <li class="list-group-item"><i class="fas fa-leaf text-success me-2"></i>{{ d }}</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                    {% if result.clinical_support.drug_alerts %}
+                    <div class="alert alert-danger mt-3">
+                        <h6><i class="fas fa-exclamation-triangle me-2"></i>Drug Alerts</h6>
+                        {% for alert in result.clinical_support.drug_alerts %}
+                        <p class="mb-1"><strong>{{ alert.drug }}</strong> — {{ alert.alert }} risk — {{ alert.action }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endif %}
+
+            <!-- Prediction form -->
             <div class="card shadow-lg border-0 fade-in">
                 <div class="card-header bg-primary text-white text-center py-4">
                     <i class="fas fa-kidneys fa-3x mb-3"></i>
-                    <h1>CKD Risk Assessment</h1
+                    <h1 class="h3">CKD Risk Assessment</h1>
+                    <p class="mb-0 small">Enter patient lab values to generate a comprehensive CKD risk prediction</p>
+                </div>
+                <div class="card-body p-4">
+                    <form method="POST" action="/predict">
+                        <h5 class="text-primary border-bottom pb-2 mb-3">Laboratory Values</h5>
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Age (years)</label>
+                                <input type="number" class="form-control" name="age" placeholder="e.g. 55" min="1" max="120">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Blood Pressure (mm Hg)</label>
+                                <input type="number" class="form-control" name="bp" placeholder="e.g. 80">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Specific Gravity</label>
+                                <select class="form-select" name="sg">
+                                    <option value="">Select</option>
+                                    <option>1.005</option><option>1.010</option>
+                                    <option>1.015</option><option>1.020</option><option>1.025</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Albumin (0–5)</label>
+                                <input type="number" class="form-control" name="al" placeholder="0–5" min="0" max="5">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Sugar (0–5)</label>
+                                <input type="number" class="form-control" name="su" placeholder="0–5" min="0" max="5">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Blood Glucose (mg/dL)</label>
+                                <input type="number" class="form-control" name="bgr" placeholder="e.g. 148">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Blood Urea (mg/dL)</label>
+                                <input type="number" class="form-control" name="bu" placeholder="e.g. 25">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Serum Creatinine (mg/dL)</label>
+                                <input type="number" step="0.1" class="form-control" name="sc" placeholder="e.g. 1.2">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Sodium (mEq/L)</label>
+                                <input type="number" class="form-control" name="sod" placeholder="e.g. 137">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Potassium (mEq/L)</label>
+                                <input type="number" step="0.1" class="form-control" name="pot" placeholder="e.g. 4.0">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Hemoglobin (g/dL)</label>
+                                <input type="number" step="0.1" class="form-control" name="hemo" placeholder="e.g. 12.5">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Packed Cell Volume (%)</label>
+                                <input type="number" class="form-control" name="pcv" placeholder="e.g. 38">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">WBC Count (cells/cumm)</label>
+                                <input type="number" class="form-control" name="wc" placeholder="e.g. 8000">
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">RBC Count (mill/cmm)</label>
+                                <input type="number" step="0.1" class="form-control" name="rc" placeholder="e.g. 5.0">
+                            </div>
+                        </div>
+
+                        <h5 class="text-primary border-bottom pb-2 mb-3 mt-4">Clinical Findings</h5>
+                        <div class="row g-3">
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Red Blood Cells</label>
+                                <select class="form-select" name="rbc">
+                                    <option value="">Select</option>
+                                    <option value="normal">Normal</option>
+                                    <option value="abnormal">Abnormal</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Pus Cells</label>
+                                <select class="form-select" name="pc">
+                                    <option value="">Select</option>
+                                    <option value="normal">Normal</option>
+                                    <option value="abnormal">Abnormal</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Pus Cell Clumps</label>
+                                <select class="form-select" name="pcc">
+                                    <option value="">Select</option>
+                                    <option value="present">Present</option>
+                                    <option value="notpresent">Not Present</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Bacteria</label>
+                                <select class="form-select" name="ba">
+                                    <option value="">Select</option>
+                                    <option value="present">Present</option>
+                                    <option value="notpresent">Not Present</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Hypertension</label>
+                                <select class="form-select" name="htn">
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Diabetes Mellitus</label>
+                                <select class="form-select" name="dm">
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Coronary Artery Disease</label>
+                                <select class="form-select" name="cad">
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Appetite</label>
+                                <select class="form-select" name="appet">
+                                    <option value="good">Good</option>
+                                    <option value="poor">Poor</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Pedal Edema</label>
+                                <select class="form-select" name="pe">
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <label class="form-label fw-semibold">Anemia</label>
+                                <select class="form-select" name="ane">
+                                    <option value="no">No</option>
+                                    <option value="yes">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <button type="submit" class="btn btn-primary btn-lg px-5">
+                                <i class="fas fa-brain me-2"></i>Run CKD Prediction
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

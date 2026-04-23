@@ -1,33 +1,155 @@
 {% extends "base.html" %}
 {% block title %}Clinical Decision Support - NephroCare AI{% endblock %}
 {% block content %}
-<div class="container mt-5">
+<div class="container mt-5 mb-5">
     <div class="row">
         <div class="col-md-3">
-            <div class="card">
+            <div class="card shadow-sm">
                 <div class="card-header bg-warning text-dark">
                     <i class="fas fa-user-md me-2"></i>Patient Selection
                 </div>
                 <div class="card-body">
                     <select class="form-select mb-3" id="patientSelect">
-                        <option>Demo Patient 1</option>
-                        <option>Demo Patient 2</option>
+                        <option>P001 — Alice Johnson</option>
+                        <option>P002 — Robert Chen</option>
+                        <option>P003 — Maria Garcia</option>
+                        <option>P004 — James Wilson</option>
+                        <option>P005 — Sarah Kim</option>
                     </select>
-                    <button class="btn btn-primary w-100" onclick="loadClinicalData()">Load Data</button>
+                    <button class="btn btn-primary w-100" onclick="loadClinicalData()">
+                        <i class="fas fa-sync me-1"></i>Load Data
+                    </button>
                 </div>
+            </div>
+            <div class="card shadow-sm mt-3">
+                <div class="card-header bg-dark text-white">
+                    <i class="fas fa-pills me-2"></i>Active Medications
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between">
+                        Lisinopril 10mg <span class="badge bg-success">Safe</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        Metformin 500mg <span class="badge bg-warning text-dark">Adjust</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        Ibuprofen PRN <span class="badge bg-danger">Avoid</span>
+                    </li>
+                </ul>
+            </div>
         </div>
+
         <div class="col-md-9">
-            <div class="card shadow">
+            <div class="card shadow mb-4">
                 <div class="card-header bg-success text-white">
                     <i class="fas fa-stethoscope me-2"></i>Treatment Recommendations
                 </div>
                 <div class="card-body">
-                    <div id="treatmentRecs" class="row">
+                    <div class="row">
                         <div class="col-md-6">
                             <div class="alert alert-info">
                                 <h6><i class="fas fa-pills me-2"></i>Drug Adjustments</h6>
-                                <p>Reduce metformin dose by 50% based on GFR 45 mL/min</p>
+                                <ul class="mb-0">
+                                    <li>Reduce metformin dose by 50% (GFR 45 mL/min)</li>
+                                    <li>Start ACE inhibitor — target BP &lt;130/80</li>
+                                    <li>Consider SGLT2 inhibitor for CKD protection</li>
+                                </ul>
                             </div>
+                        </div>
                         <div class="col-md-6">
-                            <div class="alert alert-warning">
-                                <h6><i class="fas fa-exclamation-triangle me-2"></i>Nephrotoxic Alert</h
+                            <div class="alert alert-danger">
+                                <h6><i class="fas fa-exclamation-triangle me-2"></i>Nephrotoxic Alerts</h6>
+                                <ul class="mb-0">
+                                    <li><strong>NSAIDs</strong> — Avoid (worsens GFR)</li>
+                                    <li><strong>Contrast dye</strong> — Pre-hydrate if needed</li>
+                                    <li><strong>Aminoglycosides</strong> — Dose adjust required</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow mb-4">
+                <div class="card-header bg-primary text-white">
+                    <i class="fas fa-chart-line me-2"></i>GFR Trajectory &amp; Dialysis Planning
+                </div>
+                <div class="card-body">
+                    <div class="row text-center mb-3">
+                        <div class="col-md-4">
+                            <h6 class="text-muted">Current eGFR</h6>
+                            <h3 class="text-warning fw-bold">38 mL/min</h3>
+                            <small>Stage G3b</small>
+                        </div>
+                        <div class="col-md-4">
+                            <h6 class="text-muted">Decline Rate</h6>
+                            <h3 class="text-danger fw-bold">−2.1 mL/yr</h3>
+                            <small>Moderate progression</small>
+                        </div>
+                        <div class="col-md-4">
+                            <h6 class="text-muted">Est. Dialysis</h6>
+                            <h3 class="text-info fw-bold">~18 months</h3>
+                            <small>Plan AVF now</small>
+                        </div>
+                    </div>
+                    <canvas id="gfrTrendChart" height="80"></canvas>
+                </div>
+            </div>
+
+            <div class="card shadow">
+                <div class="card-header bg-secondary text-white">
+                    <i class="fas fa-heartbeat me-2"></i>Comorbidity Risk Scores
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <label class="form-label">Diabetes Risk</label>
+                            <div class="progress mb-1" style="height:20px">
+                                <div class="progress-bar bg-warning" style="width:65%">65%</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Hypertension CVD Risk</label>
+                            <div class="progress mb-1" style="height:20px">
+                                <div class="progress-bar bg-danger" style="width:80%">80%</div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label">Anomaly Score</label>
+                            <div class="progress mb-1" style="height:20px">
+                                <div class="progress-bar bg-info" style="width:20%">20%</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById('gfrTrendChart').getContext('2d');
+new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: ['6m ago', '5m ago', '4m ago', '3m ago', '2m ago', '1m ago', 'Now'],
+        datasets: [{
+            label: 'eGFR (mL/min)',
+            data: [45, 43, 41, 40, 39, 38, 38],
+            borderColor: '#fd7e14',
+            backgroundColor: 'rgba(253,126,20,0.1)',
+            fill: true,
+            tension: 0.4
+        }]
+    },
+    options: { responsive: true, scales: { y: { min: 0, max: 60 } } }
+});
+function loadClinicalData() {
+    const btn = event.target;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm me-1"></span>Loading...';
+    setTimeout(() => { btn.innerHTML = '<i class="fas fa-sync me-1"></i>Load Data'; }, 1000);
+}
+</script>
+{% endblock %}
