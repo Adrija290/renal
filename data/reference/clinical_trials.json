@@ -1,0 +1,158 @@
+{
+  "trials": [
+    {
+      "nct_id": "NCT04565431",
+      "title": "DAPA-CKD: Dapagliflozin in Patients with Chronic Kidney Disease",
+      "sponsor": "AstraZeneca",
+      "phase": "3",
+      "status": "completed",
+      "conditions": ["CKD", "Type 2 Diabetes", "Proteinuria"],
+      "interventions": ["Dapagliflozin 10mg daily"],
+      "eligibility": {
+        "min_age": 18,
+        "max_age": null,
+        "min_egfr": 25,
+        "max_egfr": 75,
+        "min_uacr": 200,
+        "max_uacr": 5000,
+        "required_conditions": [],
+        "exclusion_conditions": ["Dialysis", "Kidney transplant", "Type 1 Diabetes", "eGFR decline >14 in past 12 weeks"],
+        "required_medications": []
+      },
+      "primary_endpoint": "Sustained ≥50% eGFR decline, ESRD, CV death, or renal death",
+      "contact": "dapa-ckd@astrazeneca.com"
+    },
+    {
+      "nct_id": "NCT03036150",
+      "title": "CREDENCE: Canagliflozin and Renal Events in Diabetes with Established Nephropathy",
+      "sponsor": "Janssen Research",
+      "phase": "3",
+      "status": "completed",
+      "conditions": ["CKD Stage 2-3", "Type 2 Diabetes", "Diabetic Nephropathy"],
+      "interventions": ["Canagliflozin 100mg daily"],
+      "eligibility": {
+        "min_age": 30,
+        "max_age": null,
+        "min_egfr": 30,
+        "max_egfr": 90,
+        "min_uacr": 300,
+        "max_uacr": 5000,
+        "required_conditions": ["Type 2 Diabetes"],
+        "exclusion_conditions": ["Dialysis", "Non-diabetic kidney disease", "Type 1 Diabetes"],
+        "required_medications": ["ACE inhibitor or ARB at stable dose for ≥4 weeks"]
+      },
+      "primary_endpoint": "ESRD, doubling serum creatinine, renal death, or CV death/HF hospitalization",
+      "contact": "credence@janssen.com"
+    },
+    {
+      "nct_id": "NCT02999997",
+      "title": "EMIT-CKD: Early Monitoring Intervention Trial in CKD",
+      "sponsor": "National Institute of Diabetes",
+      "phase": "2",
+      "status": "recruiting",
+      "conditions": ["CKD Stage 3", "Hypertension"],
+      "interventions": ["Intensive BP monitoring protocol", "Losartan dose optimization"],
+      "eligibility": {
+        "min_age": 18,
+        "max_age": 80,
+        "min_egfr": 30,
+        "max_egfr": 59,
+        "min_uacr": 30,
+        "max_uacr": null,
+        "required_conditions": ["Hypertension"],
+        "exclusion_conditions": ["Dialysis", "Active malignancy", "Pregnancy"],
+        "required_medications": []
+      },
+      "primary_endpoint": "eGFR slope at 2 years",
+      "contact": "emitckd@niddk.nih.gov"
+    },
+    {
+      "nct_id": "NCT04174508",
+      "title": "FIDELIO-DKD: Finerenone in CKD and Type 2 Diabetes",
+      "sponsor": "Bayer AG",
+      "phase": "3",
+      "status": "completed",
+      "conditions": ["CKD", "Type 2 Diabetes", "Diabetic Kidney Disease"],
+      "interventions": ["Finerenone (MR antagonist) 10-20mg daily"],
+      "eligibility": {
+        "min_age": 18,
+        "max_age": null,
+        "min_egfr": 25,
+        "max_egfr": 60,
+        "min_uacr": 30,
+        "max_uacr": 5000,
+        "required_conditions": ["Type 2 Diabetes"],
+        "exclusion_conditions": ["Dialysis", "eGFR >60 with UACR <300", "Hyperkalemia >4.8 mmol/L"],
+        "required_medications": ["ACE inhibitor or ARB at maximally tolerated dose"]
+      },
+      "primary_endpoint": "Kidney failure, sustained ≥40% eGFR decline, or renal death",
+      "contact": "fidelio@bayer.com"
+    },
+    {
+      "nct_id": "NCT05135572",
+      "title": "AI-CKD Monitoring: Wearable-Based Continuous CKD Progression Tracking",
+      "sponsor": "Stanford University Medical Center",
+      "phase": "2",
+      "status": "recruiting",
+      "conditions": ["CKD Stage 1-4"],
+      "interventions": ["Continuous wearable monitoring", "AI-based alert system"],
+      "eligibility": {
+        "min_age": 21,
+        "max_age": 75,
+        "min_egfr": 15,
+        "max_egfr": 89,
+        "min_uacr": null,
+        "max_uacr": null,
+        "required_conditions": [],
+        "exclusion_conditions": ["Dialysis", "Kidney transplant"],
+        "required_medications": []
+      },
+      "primary_endpoint": "Time to eGFR decline of 30% from baseline",
+      "contact": "ai-ckd@stanford.edu"
+    },
+    {
+      "nct_id": "NCT04071210",
+      "title": "FLOW: Semaglutide and Cardiovascular Outcomes in CKD",
+      "sponsor": "Novo Nordisk",
+      "phase": "3",
+      "status": "active",
+      "conditions": ["CKD", "Type 2 Diabetes", "Obesity"],
+      "interventions": ["Semaglutide 1mg weekly injection"],
+      "eligibility": {
+        "min_age": 18,
+        "max_age": null,
+        "min_egfr": 50,
+        "max_egfr": null,
+        "min_uacr": 300,
+        "max_uacr": null,
+        "required_conditions": ["Type 2 Diabetes"],
+        "exclusion_conditions": ["Dialysis", "Type 1 Diabetes", "eGFR <50 at screening"],
+        "required_medications": []
+      },
+      "primary_endpoint": "Major adverse kidney events plus CV death or non-fatal MI/stroke",
+      "contact": "flow-trial@novonordisk.com"
+    },
+    {
+      "nct_id": "NCT03554187",
+      "title": "PATRONUS: Phosphate Restriction and CKD Outcomes",
+      "sponsor": "Johns Hopkins University",
+      "phase": "2",
+      "status": "recruiting",
+      "conditions": ["CKD Stage 3-4", "Hyperphosphatemia"],
+      "interventions": ["Low-phosphate diet protocol", "Sucroferric oxyhydroxide binder"],
+      "eligibility": {
+        "min_age": 18,
+        "max_age": null,
+        "min_egfr": 15,
+        "max_egfr": 45,
+        "min_uacr": null,
+        "max_uacr": null,
+        "required_conditions": [],
+        "exclusion_conditions": ["Dialysis", "Active GI disease", "Serum phosphorus <3.5 mg/dL"],
+        "required_medications": []
+      },
+      "primary_endpoint": "Serum phosphorus level at 12 months",
+      "contact": "patronus@jhu.edu"
+    }
+  ]
+}

@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block title %}Patient Portal - NephroCare AI{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card sticky-top" style="top:20px;">
+                <div class="card-header bg-info text-white">
+                    <i class="fas fa-user-circle me-2"></i>My Dashboard
+                </div>
+                <div class="card-body">
+                    <h6>Current Risk Score</h6>
+                    <div class="h3 text-primary fw-bold">23%</div>
+                    <small class="text-success">Stable</small>
+                    <hr>
+                    <h6>Next Labs Due</h6>
+                    <p class="mb-1">GFR &amp; Creatinine</p>
+                    <small class="text-muted">In 14 days</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <i class="fas fa-chart-line me-2"></i>GFR Trend
+                </div>
+                <div class="card-body">
+                    <canvas id="gfrChart" height="100"></canvas>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header bg-warning text-dark">
+                            <i class="fas fa-utensils me-2"></i>AI Diet Plan
+                        </div>
+                        <div class="card-body">
+                            <h6>Today&#39;s Recommendations</h6>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i><strong>Low Potassium</strong>: Apple (1 med)</li>
+                                <li><i class="fas fa-check text-success me-2"></i><strong>Low Phosphorus</strong>: White rice (1 cup)</li>
+                                <li><i class="fas fa-exclamation text-warning me-2"></i><strong>Avoid</strong>: Banana, tomato</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card">
+                        <div class="card-header bg-danger text-white">
+                            <i class="fas fa-notes-medical me-2"></i>Symptom Tracker
+                        </div>
+                        <div class="card-body">
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="fatigue">
+                                <label class="form-check-label" for="fatigue">Fatigue</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" id="swelling">
+                                <label class="form-check-label" for="swelling">Leg Swelling</label>
+                            </div>
+                            <button class="btn btn-sm btn-outline-primary w-100">Log Symptoms</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById(&#39;gfrChart&#39;);
+new Chart(ctx, {
+    type: &#39;line&#39;,
+    data: {
+        labels: [&#39;Jan&#39;, &#39;Feb&#39;, &#39;Mar&#39;, &#39;Apr&#39;, &#39;May&#39;],
+        datasets: [{ 
+            label: &#39;GFR (mL/min)&#39;,
+            data: [92, 88, 82, 76, 71],
+            borderColor: &#39;#28a745&#39;,
+            tension: 0.4
+        }]
+    },
+    options: { responsive: true, scales: { y: { beginAtZero: false } } }
+});
+</script>
+{% endblock %}
+

@@ -1,0 +1,66 @@
+{
+  "stages": {
+    "G1_G2": {
+      "label": "CKD Stage 1-2 (eGFR ≥60)",
+      "protein": {"target_g_per_kg": 0.8, "notes": "Normal protein intake; high-quality protein preferred"},
+      "potassium": {"limit_mg_day": null, "notes": "No restriction unless hyperkalemia present; monitor levels"},
+      "phosphorus": {"limit_mg_day": 1200, "notes": "Limit processed foods high in phosphate additives"},
+      "sodium": {"limit_mg_day": 2300, "notes": "DASH-style diet; limit processed foods"},
+      "fluid": {"limit_ml_day": null, "notes": "No restriction; adequate hydration 1.5-2L/day"},
+      "calories": {"target_kcal_per_kg": 30, "notes": "Maintain healthy weight; avoid obesity"},
+      "calcium": {"limit_mg_day": 1000, "notes": "Normal intake from diet; supplement if deficient"},
+      "foods_to_avoid": ["Processed meats", "Fast food", "Sodas with phosphoric acid"],
+      "foods_to_emphasize": ["Fruits", "Vegetables", "Whole grains", "Lean protein", "Olive oil"]
+    },
+    "G3a_G3b": {
+      "label": "CKD Stage 3 (eGFR 30-59)",
+      "protein": {"target_g_per_kg": 0.6, "notes": "Reduce protein to slow progression; 50% high biological value"},
+      "potassium": {"limit_mg_day": 2000, "notes": "Moderate restriction; monitor serum K+; leach vegetables"},
+      "phosphorus": {"limit_mg_day": 800, "notes": "Avoid phosphate additives (cola drinks, processed cheese, instant meals)"},
+      "sodium": {"limit_mg_day": 2000, "notes": "Strict sodium control for BP management"},
+      "fluid": {"limit_ml_day": null, "notes": "Usually unrestricted; monitor if edema present"},
+      "calories": {"target_kcal_per_kg": 30, "notes": "Adequate calories to prevent catabolism"},
+      "calcium": {"limit_mg_day": 1000, "notes": "Monitor levels; vitamin D supplementation often needed"},
+      "foods_to_avoid": ["Dark colas", "Processed cheese", "Canned soups", "Salted snacks", "Dried fruits", "Nuts (high phosphorus/potassium)"],
+      "foods_to_emphasize": ["White rice", "White bread", "Cauliflower", "Cabbage", "Green beans", "Apples", "Berries", "Egg whites"]
+    },
+    "G4": {
+      "label": "CKD Stage 4 (eGFR 15-29)",
+      "protein": {"target_g_per_kg": 0.6, "notes": "Very low protein diet (VLPD); consider keto-acid supplements"},
+      "potassium": {"limit_mg_day": 1500, "notes": "Strict restriction; avoid salt substitutes (KCl); leach/boil vegetables"},
+      "phosphorus": {"limit_mg_day": 600, "notes": "Phosphate binders likely needed; avoid all phosphate additives"},
+      "sodium": {"limit_mg_day": 1500, "notes": "Very strict; for hypertension and fluid balance"},
+      "fluid": {"limit_ml_day": 1500, "notes": "Restrict if urine output declining; weigh daily"},
+      "calories": {"target_kcal_per_kg": 35, "notes": "Higher calorie target to prevent PEW (protein-energy wasting)"},
+      "calcium": {"limit_mg_day": 1000, "notes": "Active vitamin D (calcitriol) usually prescribed"},
+      "foods_to_avoid": ["All whole grains (switch to white/refined)", "Bananas", "Oranges", "Potatoes", "Tomatoes", "Dairy products (high phosphorus)", "Nuts and seeds", "Chocolate"],
+      "foods_to_emphasize": ["Egg whites", "Lean chicken (small portions)", "White rice", "White pasta", "Cauliflower", "Cabbage", "Green beans", "Apples", "Blueberries", "Cranberries"]
+    },
+    "G5": {
+      "label": "CKD Stage 5 / ESRD (eGFR <15)",
+      "protein": {"target_g_per_kg": 1.2, "notes": "If on dialysis: INCREASE protein to 1.2g/kg (dialysis removes amino acids)"},
+      "potassium": {"limit_mg_day": 1500, "notes": "Very strict; potentially life-threatening hyperkalemia risk"},
+      "phosphorus": {"limit_mg_day": 600, "notes": "Multiple phosphate binders required; dialysis removes some phosphorus"},
+      "sodium": {"limit_mg_day": 1000, "notes": "Severe restriction for fluid management between dialysis sessions"},
+      "fluid": {"limit_ml_day": 800, "notes": "Restrict to urine output + 500mL; weigh twice daily"},
+      "calories": {"target_kcal_per_kg": 35, "notes": "Critical to prevent malnutrition; dialysis patients at high PEW risk"},
+      "calcium": {"limit_mg_day": 1000, "notes": "Avoid calcium-based phosphate binders if hypercalcemic"},
+      "foods_to_avoid": ["Bananas", "Oranges", "Potatoes", "Tomatoes", "Dairy", "Nuts", "Chocolate", "All processed foods", "Whole grains"],
+      "foods_to_emphasize": ["Dialysis-specific supplements", "Egg whites", "Lean fish", "Chicken breast", "White rice", "Cauliflower", "Cabbage", "Apples", "Cranberry juice (diluted)"]
+    }
+  },
+  "high_potassium_foods": {
+    "very_high": ["Bananas", "Oranges", "Potatoes", "Tomatoes", "Avocado", "Spinach", "Dried fruits", "Nuts", "Chocolate", "Molasses"],
+    "high": ["Broccoli", "Brussels sprouts", "Mushrooms", "Squash", "Sweet potatoes", "Corn", "Peas", "Milk", "Yogurt", "Salmon"],
+    "low": ["Apples", "Berries", "Grapes", "Pears", "Cauliflower", "Cabbage", "Green beans", "Lettuce", "White rice", "White bread", "Pasta", "Egg whites"]
+  },
+  "high_phosphorus_foods": {
+    "very_high": ["Cola drinks", "Processed cheese", "Canned meats", "Fast food", "Instant puddings", "Beer", "Chocolate"],
+    "high": ["Milk", "Cheese", "Yogurt", "Ice cream", "Whole grain breads", "Nuts", "Seeds", "Organ meats", "Sardines"],
+    "low": ["Egg whites", "Sherbet", "Hard candy", "Lemon-lime soda", "White bread", "White rice", "Pasta", "Cabbage", "Cauliflower"]
+  },
+  "leaching_technique": {
+    "description": "Leaching reduces potassium content of vegetables by 30-50%",
+    "steps": ["Peel and cut vegetables into small pieces", "Rinse in warm water", "Soak in large volume of warm water for 2-4 hours (or overnight)", "Drain and rinse again", "Cook in fresh water (don't use soaking water)"]
+  }
+}

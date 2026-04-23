@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Clinical Decision Support - NephroCare AI{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card">
+                <div class="card-header bg-warning text-dark">
+                    <i class="fas fa-user-md me-2"></i>Patient Selection
+                </div>
+                <div class="card-body">
+                    <select class="form-select mb-3" id="patientSelect">
+                        <option>Demo Patient 1</option>
+                        <option>Demo Patient 2</option>
+                    </select>
+                    <button class="btn btn-primary w-100" onclick="loadClinicalData()">Load Data</button>
+                </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <i class="fas fa-stethoscope me-2"></i>Treatment Recommendations
+                </div>
+                <div class="card-body">
+                    <div id="treatmentRecs" class="row">
+                        <div class="col-md-6">
+                            <div class="alert alert-info">
+                                <h6><i class="fas fa-pills me-2"></i>Drug Adjustments</h6>
+                                <p>Reduce metformin dose by 50% based on GFR 45 mL/min</p>
+                            </div>
+                        <div class="col-md-6">
+                            <div class="alert alert-warning">
+                                <h6><i class="fas fa-exclamation-triangle me-2"></i>Nephrotoxic Alert</h

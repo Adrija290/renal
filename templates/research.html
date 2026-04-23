@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+{% block title %}Research Tools - NephroCare AI{% endblock %}
+{% block content %}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-3">
+            <div class="card">
+                <div class="card-header">
+                    <h6><i class="fas fa-flask me-2"></i>Research Modules</h6>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex justify-content-between">
+                        Federated Learning
+                        <span class="badge bg-primary rounded-pill">Active</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        Cohort Analytics
+                        <span class="badge bg-success rounded-pill">Ready</span>
+                    </li>
+                    <li class="list-group-item d-flex justify-content-between">
+                        Trial Matching
+                        <span class="badge bg-info rounded-pill">3 Matches</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-9">
+            <div class="card shadow">
+                <div class="card-header bg-dark text-white">
+                    <i class="fas fa-chart-bar me-2"></i>Cohort Analytics Dashboard
+                </div>
+                <div class="card-body">
+                    <div class="row mb-4">
+                        <div class="col-md-3">
+                            <div class="card text-center bg-light">
+                                <div class="card-body">
+                                    <h1 class="display-4">1,247</h1>
+                                    <p class="card-text">Total Patients</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-center bg-light">
+                                <div class="card-body">
+                                    <h1 class="display-4 text-danger">12.5%</h1>
+                                    <p class="card-text">CKD Prevalence</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-center bg-light">
+                                <div class="card-body">
+                                    <h1 class="display-4 text-warning">2.3y</h1>
+                                    <p class="card-text">Avg Progression</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-center bg-light">
+                                <div class="card-body">
+                                    <h1 class="display-4 text-info">87%</h1>
+                                    <p class="card-text">Model Accuracy</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <canvas id="cohortChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card mt-4">
+                <div class="card-header bg-primary text-white">
+                    <i class="fas fa-handshake me-2"></i>Clinical Trial Matches
+                </div>
+                <div class="card-body">
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action">
+                            <div class="d-flex w-100 justify-content-between">
+                                <h6 class="mb-1">NCT04573920 - SGLT2 CKD Trial</h6>
+                                <small>95% Match</small>
+                            </div>
+                            <p class="mb-1">Eligible for dapagliflozin study</p>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+const ctx = document.getElementById(&#39;cohortChart&#39;).getContext(&#39;2d&#39;);
+new Chart(ctx, {
+    type: &#39;bar&#39;,
+    data: {
+        labels: [&#39;<40&#39;, &#39;40-59&#39;, &#39;60-79&#39;, &#39;>80&#39;],
+        datasets: [{
+            label: &#39;CKD Prevalence by Age&#39;,
+            data: [8, 15, 25, 35],
+            backgroundColor: [&#39;#28a745&#39;, &#39;#ffc107&#39;, &#39;#fd7e14&#39;, &#39;#dc3545&#39;]
+        }]
+    },
+    options: { scales: { y: { beginAtZero: true } } }
+});
+</script>
+{% endblock %}

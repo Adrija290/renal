@@ -1,0 +1,97 @@
+{
+  "categories": {
+    "NSAIDs": {
+      "risk_level": "high",
+      "mechanism": "Reduce renal prostaglandin synthesis, causing afferent arteriole vasoconstriction and reduced GFR",
+      "drugs": [
+        {"name": "Ibuprofen", "brand": ["Advil", "Motrin"], "avoid_below_gfr": 30, "dose_adjustment": "Avoid if eGFR <30; use with caution 30-60"},
+        {"name": "Naproxen", "brand": ["Aleve"], "avoid_below_gfr": 30, "dose_adjustment": "Avoid if eGFR <30"},
+        {"name": "Diclofenac", "brand": ["Voltaren"], "avoid_below_gfr": 30, "dose_adjustment": "Avoid if eGFR <30"},
+        {"name": "Indomethacin", "brand": ["Indocin"], "avoid_below_gfr": 30, "dose_adjustment": "Avoid if eGFR <30"},
+        {"name": "Ketorolac", "brand": ["Toradol"], "avoid_below_gfr": 30, "dose_adjustment": "Contraindicated in advanced CKD"},
+        {"name": "Celecoxib", "brand": ["Celebrex"], "avoid_below_gfr": 30, "dose_adjustment": "Use with caution; avoid <30"}
+      ]
+    },
+    "Aminoglycosides": {
+      "risk_level": "high",
+      "mechanism": "Direct tubular toxicity causing acute tubular necrosis",
+      "drugs": [
+        {"name": "Gentamicin", "brand": [], "avoid_below_gfr": null, "dose_adjustment": "Extend dosing interval based on eGFR; monitor levels closely"},
+        {"name": "Tobramycin", "brand": [], "avoid_below_gfr": null, "dose_adjustment": "Dose reduction required; calculate by Cockcroft-Gault"},
+        {"name": "Amikacin", "brand": [], "avoid_below_gfr": null, "dose_adjustment": "Significant dose reduction; peak/trough monitoring essential"},
+        {"name": "Streptomycin", "brand": [], "avoid_below_gfr": null, "dose_adjustment": "Reduce dose and extend interval"}
+      ]
+    },
+    "Contrast_Agents": {
+      "risk_level": "high",
+      "mechanism": "Contrast-induced nephropathy via direct tubular toxicity and renal vasoconstriction",
+      "drugs": [
+        {"name": "Iodinated contrast (iohexol)", "brand": ["Omnipaque"], "avoid_below_gfr": 30, "dose_adjustment": "Hold metformin; pre-hydration required; minimize dose"},
+        {"name": "Gadolinium (MRI)", "brand": ["Magnevist"], "avoid_below_gfr": 30, "dose_adjustment": "Risk of nephrogenic systemic fibrosis; avoid if eGFR <30"}
+      ]
+    },
+    "Antibiotics": {
+      "risk_level": "moderate",
+      "mechanism": "Various mechanisms including direct tubulotoxicity and interstitial nephritis",
+      "drugs": [
+        {"name": "Vancomycin", "brand": [], "avoid_below_gfr": null, "dose_adjustment": "Dose by AUC monitoring; significant accumulation in CKD"},
+        {"name": "Amphotericin B", "brand": [], "avoid_below_gfr": null, "dose_adjustment": "Use liposomal formulation; monitor renal function daily"},
+        {"name": "Acyclovir", "brand": ["Zovirax"], "avoid_below_gfr": 25, "dose_adjustment": "eGFR 25-50: 50% dose; eGFR 10-25: 50% dose q24h; <10: 50% dose q48h"},
+        {"name": "Ciprofloxacin", "brand": ["Cipro"], "avoid_below_gfr": null, "dose_adjustment": "eGFR <30: 50% dose or extend interval"},
+        {"name": "Nitrofurantoin", "brand": ["Macrobid"], "avoid_below_gfr": 30, "dose_adjustment": "Contraindicated if eGFR <30 (ineffective and toxic metabolite accumulation)"}
+      ]
+    },
+    "ACE_Inhibitors": {
+      "risk_level": "moderate",
+      "mechanism": "Can reduce GFR acutely (especially with bilateral RAS); monitor K+ and creatinine",
+      "drugs": [
+        {"name": "Lisinopril", "brand": ["Zestril", "Prinivil"], "avoid_below_gfr": null, "dose_adjustment": "Start low; monitor K+ and creatinine at 1-2 weeks; acceptable if stable"},
+        {"name": "Enalapril", "brand": ["Vasotec"], "avoid_below_gfr": null, "dose_adjustment": "Reduce dose if eGFR <30; beneficial for proteinuria"},
+        {"name": "Ramipril", "brand": ["Altace"], "avoid_below_gfr": null, "dose_adjustment": "Renoprotective; dose reduce below eGFR 30"},
+        {"name": "Benazepril", "brand": ["Lotensin"], "avoid_below_gfr": null, "dose_adjustment": "Beneficial in proteinuric CKD; monitor K+"}
+      ]
+    },
+    "Diuretics": {
+      "risk_level": "low_moderate",
+      "mechanism": "Volume depletion can precipitate AKI; electrolyte disturbances",
+      "drugs": [
+        {"name": "Furosemide", "brand": ["Lasix"], "avoid_below_gfr": null, "dose_adjustment": "Higher doses needed as GFR falls; monitor electrolytes"},
+        {"name": "Hydrochlorothiazide", "brand": ["HCTZ"], "avoid_below_gfr": 30, "dose_adjustment": "Ineffective below eGFR 30; switch to loop diuretic"},
+        {"name": "Spironolactone", "brand": ["Aldactone"], "avoid_below_gfr": 30, "dose_adjustment": "Risk of hyperkalemia; avoid eGFR <30"}
+      ]
+    },
+    "Diabetes_Medications": {
+      "risk_level": "variable",
+      "mechanism": "Accumulation of parent drug or metabolites causing toxicity or hypoglycemia",
+      "drugs": [
+        {"name": "Metformin", "brand": ["Glucophage"], "avoid_below_gfr": 30, "dose_adjustment": "eGFR 30-45: 50% dose; eGFR <30: contraindicated (lactic acidosis risk)"},
+        {"name": "Sitagliptin", "brand": ["Januvia"], "avoid_below_gfr": null, "dose_adjustment": "eGFR 30-45: 50mg/day; eGFR <30: 25mg/day"},
+        {"name": "Empagliflozin", "brand": ["Jardiance"], "avoid_below_gfr": 20, "dose_adjustment": "eGFR <45: reduced efficacy; eGFR <20: avoid for glycemic control"},
+        {"name": "Glibenclamide", "brand": ["Diabeta"], "avoid_below_gfr": 30, "dose_adjustment": "Avoid in CKD; active metabolite accumulates causing hypoglycemia"}
+      ]
+    },
+    "Chemotherapy": {
+      "risk_level": "high",
+      "mechanism": "Direct nephrotoxicity; cisplatin causes proximal tubular injury",
+      "drugs": [
+        {"name": "Cisplatin", "brand": [], "avoid_below_gfr": 50, "dose_adjustment": "eGFR 40-50: 75% dose; <40: avoid; aggressive hydration required"},
+        {"name": "Carboplatin", "brand": [], "avoid_below_gfr": null, "dose_adjustment": "Dose by Calvert formula using GFR"},
+        {"name": "Methotrexate", "brand": [], "avoid_below_gfr": 30, "dose_adjustment": "Significant dose reduction required; toxic below eGFR 30"}
+      ]
+    },
+    "Immunosuppressants": {
+      "risk_level": "high",
+      "mechanism": "Calcineurin inhibitors cause afferent arteriole vasoconstriction (acute) and tubulointerstitial fibrosis (chronic)",
+      "drugs": [
+        {"name": "Cyclosporine", "brand": ["Sandimmune", "Neoral"], "avoid_below_gfr": null, "dose_adjustment": "Monitor levels closely; nephrotoxicity dose-dependent"},
+        {"name": "Tacrolimus", "brand": ["Prograf"], "avoid_below_gfr": null, "dose_adjustment": "Monitor trough levels; reduce dose for toxicity"},
+        {"name": "Lithium", "brand": ["Lithobid"], "avoid_below_gfr": null, "dose_adjustment": "eGFR <60: reduce dose; monitor levels; can cause nephrogenic DI"}
+      ]
+    }
+  },
+  "safe_alternatives": {
+    "NSAIDs": ["Acetaminophen (paracetamol) preferred for pain; tramadol with caution; low-dose opioids for severe pain"],
+    "Contrast_Agents": ["CO2 angiography; MRI without contrast; ultrasound; pre-hydration protocols"],
+    "Antibiotics": ["Beta-lactams generally safer; dose-adjust all renally-cleared antibiotics"]
+  }
+}
